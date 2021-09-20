@@ -230,9 +230,9 @@ function loadLocationList() {
     }
   }
   if (!locations || Object.keys(locations).length === 0) {
-    const key = '40.7720232,-73.9732319';
+    const key = 'lat=40.7720232&lon=-73.9732319';
     locations = {};
-    locations[key] = {label: 'New York City', geo: '40.7720232,-73.9732319'};
+    locations[key] = {label: 'New York City', geo: 'lat=40.7720232&lon=-73.9732319'};
   }
   return locations;
 }

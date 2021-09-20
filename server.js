@@ -25,9 +25,12 @@ const redirectToHTTPS = require('express-http-to-https').redirectToHTTPS;
 // CODELAB: Change this to add a delay (ms) before the server responds.
 const FORECAST_DELAY = 0;
 
-// CODELAB: If running locally, set your Dark Sky API key here <!--
-const API_KEY = process.env.DARKSKY_API_KEY;
-const BASE_URL = `https://api.darksky.net/forecast`;-->
+// CODELAB: If running locally, set your Dark Sky API key here 
+//const API_KEY = process.env.DARKSKY_API_KEY;
+//const BASE_URL = `https://api.darksky.net/forecast`;
+const BASE_URL = `https://api.openweathermap.org/data/2.5/onecall?`;
+const API_KEY = `&appid=66489725179e04d4a77bdaa0e8db3732`;
+const UNITS_URL = `&units=metric`;
 
 // Fake forecast data used if we can't reach the Dark Sky API
 const fakeForecast = {
@@ -140,7 +143,8 @@ function generateFakeForecast(location) {
  */
 function getForecast(req, resp) {
   const location = req.params.location || '40.7720232,-73.9732319';
-  const url = `https://api.openweathermap.org/data/2.5/onecall?lat=40.7720232&lon=-73.9732319&appid=66489725179e04d4a77bdaa0e8db3732&units=metric`;
+  //const url = `https://api.openweathermap.org/data/2.5/onecall?lat=40.7720232&lon=-73.9732319&appid=66489725179e04d4a77bdaa0e8db3732&units=metric`;
+  const url = `${BASE_URL}${req.params.location}${API_KEY}${UNITS_URL}`;
   fetch(url).then((resp) => {
     if (resp.status !== 200) {
       throw new Error(resp.statusText);
