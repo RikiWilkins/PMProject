@@ -83,58 +83,56 @@ function renderForecast(card, data) {
   const lastUpdated = parseInt(cardLastUpdated);
 
   // If the data on the element is newer, skip the update.
-if (lastUpdated >= data.current.dt) {
+  if (lastUpdated >= data.current.dt) {
     return;
   }
   cardLastUpdatedElem.textContent = data.current.dt;
 
-  console.log("PMA_CV2, description: ", data.current.weather[0].description);
+ console.log("data.timezone = " + data.timezone);// Render the forecast data into the card.
   card.querySelector('.description').textContent = data.current.weather[0].description;
   const forecastFrom = luxon.DateTime
       .fromSeconds(data.current.dt)
       .setZone(data.timezone)
       .toFormat('DDDD t');
-  card.querySelector('.date').textContent = forecastFrom;
-  card.querySelector('.current .icon')
-      .className = `icon clear-day`;
-  card.querySelector('.current .temperature .value')
-      .textContent = Math.round(data.currently.temperature);
-  card.querySelector('.current .humidity .value')
-      .textContent = Math.round(data.currently.humidity * 100);
-  card.querySelector('.current .wind .value')
-      .textContent = Math.round(data.currently.windSpeed);
-  card.querySelector('.current .wind .direction')
-      .textContent = Math.round(data.currently.windBearing);
-  const sunrise = luxon.DateTime
-      .fromSeconds(data.daily.data[0].sunriseTime)
-      .setZone(data.timezone)
-      .toFormat('t');
-  card.querySelector('.current .sunrise .value').textContent = sunrise;
-  const sunset = luxon.DateTime
-      .fromSeconds(data.daily.data[0].sunsetTime)
-      .setZone(data.timezone)
-      .toFormat('t');
-  card.querySelector('.current .sunset .value').textContent = sunset;
 
-  // Render the next 7 days.
-  const futureTiles = card.querySelectorAll('.future .oneday');
-  futureTiles.forEach((tile, index) => {
-    const forecast = data.daily.data[index + 1];
-    const forecastFor = luxon.DateTime
-        .fromSeconds(forecast.time)
+     // IKONA
+    card.querySelector('.current .icon')
+        .className = `icon clear-day`;
+  
+    // TEPLOTA 
+    card.querySelector('.current .temperature .value')
+        .textContent = Math.round(data.current.temp);
+  
+    // VLHKOST
+    card.querySelector('.current .humidity .value')
+        .textContent = Math.round(data.current.humidity);
+  
+    // RYCHLOST VETRU
+    card.querySelector('.current .wind .value')
+      .textContent = Math.round(data.current.wind_speed);
+
+    // SMER VETRU
+    card.querySelector('.current .wind .direction')
+      .textContent = Math.round(data.current.wind_deg);
+  
+    // VYCHOD SLUNCE
+    const sunrise = luxon.DateTime
+      .fromSeconds(data.current.sunrise)
+      .setZone(data.timezone)
+      .toFormat('t');
+    card.querySelector('.current .sunrise .value').textContent = sunrise;
+  
+    // ZAPAD SLUNCE
+    const sunset = luxon.DateTime
+        .fromSeconds(data.current.sunset)
         .setZone(data.timezone)
-        .toFormat('ccc');
-    tile.querySelector('.date').textContent = forecastFor;
-    tile.querySelector('.icon').className = `icon ${forecast.icon}`;
-    tile.querySelector('.temp-high .value')
-        .textContent = Math.round(forecast.temperatureHigh);
-    tile.querySelector('.temp-low .value')
-        .textContent = Math.round(forecast.temperatureLow);
-  });
-
-  // If the loading spinner is still visible, remove it.
-  const spinner = card.querySelector('.card-spinner');
-  if (spinner) {
+        .toFormat('t');
+    card.querySelector('.current .sunset .value').textContent = sunset;
+  
+    // SPINNER
+    // If the loading spinner is still visible, remove it.
+    const spinner = card.querySelector('.card-spinner');
+    if (spinner) {
     card.removeChild(spinner);
   }
 }

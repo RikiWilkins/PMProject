@@ -37,9 +37,9 @@
 
   <header class="header">
     <h1>
-      Weather PWA
-      <a href="https://darksky.net/poweredby/" class="powered-by">
-        Powered by Dark Sky
+      Weather PWA 
+      <a href="https://openweathermap.org/" class="powered-by">
+        Powered by OpenWeather
       </a>
     </h1>
     <button id="butInstall" aria-label="Install" hidden></button>
@@ -73,7 +73,7 @@
         <div class="visual">
           <div class="icon"></div>
           <div class="temperature">
-            <span class="value"></span><span class="scale">°F</span>
+            <span class="value"></span><span class="scale">°C</span>
           </div>
         </div>
         <div class="description">
@@ -97,7 +97,7 @@
             </div>
         </div>
       </div>
-      <div class="future">
+      <!--<div class="future">
         <div class="oneday">
           <div class="date"></div>
           <div class="icon"></div>
@@ -168,7 +168,7 @@
             <span class="value"></span>°
           </div>
         </div>
-      </div>
+      </div>-->
     </div>
   </main>
 
@@ -181,15 +181,15 @@
             Values are lat/lon values, use Google Maps to find and add
             additional cities.
           -->
-          <option value="28.6472799,76.8130727">Dehli, India</option>
-          <option value="-5.7759362,106.1174957">Jakarta, Indonesia</option>
-          <option value="51.5287718,-0.2416815">London, UK</option>
-          <option value="40.6976701,-74.2598666">New York, USA</option>
-          <option value="48.8589507,2.2770202">Paris, France</option>
-          <option value="-64.8251018,-63.496847">Port Lockroy, Antarctica</option>
-          <option value="37.757815,-122.5076401">San Francisco, USA</option>
-          <option value="31.2243085,120.9162955">Shanghai, China</option>
-          <option value="35.6735408,139.5703032">Tokyo, Japan</option>
+          <option value="lat=28.6472799&lon=76.8130727">Dehli, India</option>
+          <option value="lat=-5.7759362&lon=106.1174957">Jakarta, Indonesia</option>
+          <option value="lat=51.5287718&lon=-0.2416815">London, UK</option>
+          <option value="lat=40.6976701&lon=-74.2598666">New York, USA</option>
+          <option value="lat=48.8589507&lon=2.2770202">Paris, France</option>
+          <option value="lat=-64.8251018&lon=-63.496847">Port Lockroy, Antarctica</option>
+          <option value="lat=37.757815&lon=-122.5076401">San Francisco, USA</option>
+          <option value="lat=31.2243085&lon=120.9162955">Shanghai, China</option>
+          <option value="lat=35.6735408&lon=139.5703032">Tokyo, Japan</option>
         </select>
       </div>
       <div class="dialog-buttons">
