@@ -140,7 +140,7 @@ function generateFakeForecast(location) {
  */
 function getForecast(req, resp) {
   const location = req.params.location || '40.7720232,-73.9732319';
-  const url = `${BASE_URL}/${API_KEY}/${location}`;
+  const url = `https://api.openweathermap.org/data/2.5/onecall?lat=40.7720232&lon=-73.9732319&appid=66489725179e04d4a77bdaa0e8db3732&units=metric`;
   fetch(url).then((resp) => {
     if (resp.status !== 200) {
       throw new Error(resp.statusText);
