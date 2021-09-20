@@ -86,17 +86,17 @@ function renderForecast(card, data) {
 if (lastUpdated >= data.current.dt) {
     return;
   }
-  cardLastUpdatedElem.textContent = data.currently.time;
+  cardLastUpdatedElem.textContent = data.current.dt;
 
-  // Render the forecast data into the card.
-  card.querySelector('.description').textContent = data.currently.summary;
+  console.log("PMA_CV2, description: ", data.current.weather[0].description);
+  card.querySelector('.description').textContent = data.current.weather[0].description;
   const forecastFrom = luxon.DateTime
-      .fromSeconds(data.currently.time)
+      .fromSeconds(data.current.dt)
       .setZone(data.timezone)
       .toFormat('DDDD t');
   card.querySelector('.date').textContent = forecastFrom;
   card.querySelector('.current .icon')
-      .className = `icon ${data.currently.icon}`;
+      .className = `icon clear-day`;
   card.querySelector('.current .temperature .value')
       .textContent = Math.round(data.currently.temperature);
   card.querySelector('.current .humidity .value')
